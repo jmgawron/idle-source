@@ -1,0 +1,19 @@
+[{
+
+	"instanceUuid":"",
+	"namespace":"global",
+    {% if data['type'] == 'banner.setting' %}
+	"type":"banner.setting",
+    "key":"device.banner",
+    "instanceType":"banner",
+    {% else %}
+    "type":"timezone.setting",
+    "key":"timezone.site",
+    "instanceType":"timezone",
+    {% endif %}
+	"version":1,
+	"value":["{{ data['value'] }}"],
+	"groupUuid":"-1",
+	"inheritedGroupUuid":"",
+	"inheritedGroupName":""
+}]

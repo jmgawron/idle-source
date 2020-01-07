@@ -1,0 +1,27 @@
+[{
+	"instanceType":"wlan",
+	"namespace":"wlan",
+	"type":"wlan.setting",
+	"key":"wlan.info",
+	"value":[{
+		"ssid":"{{ data['ssid'] }}",
+		"profileName":"",
+		"wlanType":"Enterprise",
+		"authType":"{{ data['security'] }}",
+		"authServer":"auth_ise",
+		"passphrase":"{{ data['passphrase'] }}",
+		"peerIp":"",
+		"isEnabled":true,
+		"portalType":"",
+		"portalName":"",
+		"scalableGroupTag":"",
+		"redirectUrlType":"",
+		"redirectUrl":"",
+		"externalAuthIpAddress":"",
+		"isFastLaneEnabled":{{ data['fastlane'] }},
+		"fastTransition":"{{ data['802.11r'] }}",
+		"trafficType":"{{ data['trafficType'] }}",
+		"isMacFilteringEnabled":{{ data['macFiltering'] }}
+		}],
+	"groupUuid":"-1"
+}]

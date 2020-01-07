@@ -1,0 +1,9 @@
+[{
+	"description":"{{ data['profileName'] }}",
+    {% if 'read' in data['communityType'].lower() %}
+	"readCommunity":"{{ data['community'] }}"
+    {% endif %}
+    {% if 'write' in data['communityType'].lower() %}
+	"writeCommunity":"{{ data['community'] }}"
+    {% endif %}
+}]

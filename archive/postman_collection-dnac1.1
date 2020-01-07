@@ -1,0 +1,549 @@
+{
+	"info": {
+		"name": "DNAC",
+		"_postman_id": "84685fda-ea09-d7bd-f910-c38358608529",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Service Ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody)",
+							"pm.environment.set(\"token\", jsonData.response.serviceTicket);",
+							"",
+							"tests[\"response code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"admin\",\r\n\t\"password\": \"C!sc0123\"\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/ticket",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"ticket"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Service Ticket MAGLEV EFT5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody)",
+							"pm.environment.set(\"token\", jsonData.Token);",
+							"",
+							"tests[\"response code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{user_id}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url}}/system/v1/auth/token",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"system",
+						"v1",
+						"auth",
+						"token"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Tasks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/v1/task/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"task",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Tasks with Errors",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/v1/task?isError=true",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"task"
+					],
+					"query": [
+						{
+							"key": "isError",
+							"value": "true",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST - CREATE NEW DEVICE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n  \"cliTransport\": \"ssh\",\r\n  \"computeDevice\": false,\r\n  \"snmpRetry\": 3,\r\n  \"password\": \"C!sc0123\",\r\n  \"enablePassword\": \"C!sc0123\",\r\n  \"snmpTimeout\": 5,\r\n  \"ipAddress\": [\r\n    \"172.16.0.2\"\r\n  ],\r\n  \"snmpMode\": \"ro\",\r\n  \"userName\": \"dnac\",\r\n  \"snmpROCommunity\": \"dnacRO\",\r\n\t\"snmpRWCommunity\": \"dnacRW\",\r\n  \"snmpVersion\": \"v2\"\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/network-device",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"network-device"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Network-Devices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/v1/network-device",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"network-device"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Grouping",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/v1/group",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"group"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "IP Pools",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/v2/ippool/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"ippool",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "NEW IP Pool",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ipPoolName\":\"network108\",\n\t\"ipPoolCidr\":\"192.168.108.0/24\",\n\t\"gateways\":[\"192.168.108.1\"],\n\t\"dhcpServerIps\":[\"192.168.199.12\"],\n\t\"dnsServerIps\":[\"192.168.199.12\"],\n\t\"overlapping\":false\n}\n"
+				},
+				"url": {
+					"raw": "{{base_url}}/v2/ippool",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"ippool"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "VRFs",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/v2/data/customer-facing-service/virtualnetworkcontext",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"data",
+						"customer-facing-service",
+						"virtualnetworkcontext"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "NEW VRFs",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n\t{\r\n\t\t\"scope\": \"2827e5bf-d291-3d54-aeda-3e21b29a9d5d\", \r\n\t\t\"name\": \"guest\",\r\n\t\t\"scalableGroup\": [],\r\n\t\t\"virtualNetworkContextType\": \"ISOLATED\"\r\n\t}\r\n]"
+				},
+				"url": {
+					"raw": "{{base_url}}/v2/data/customer-facing-service/virtualnetworkcontext",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"data",
+						"customer-facing-service",
+						"virtualnetworkcontext"
+					]
+				},
+				"description": "Not sure what the scope is from"
+			},
+			"response": []
+		},
+		{
+			"name": "Get VN Association",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/v2/data/customer-facing-service/VirtualNetwork",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"data",
+						"customer-facing-service",
+						"VirtualNetwork"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "NEW VN Association  UPDATE RESOURCE VERSION!!",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n\t{\r\n\t\t\"fabricOverride\": [],\r\n\t\t\"segment\": [\r\n\t\t\t{\r\n\t\t\t\t\"type\": \"Segment\",\r\n\t\t\t\t\"name\": \"192_168_107_0-guest\",\r\n\t\t\t\t\"trafficType\": \"DATA\",\r\n\t\t\t\t\"ipPoolId\": \"8a1de9fd-9572-4520-bb68-268b4ef0c8b9\",\r\n\t\t\t\t\"isFloodAndLearn\": false,\r\n\t\t\t\t\"isDefaultEnterprise\": false,\r\n\t\t\t\t\"isApProvisioning\": false,\r\n\t\t\t\t\"connectivityDomain\": {\r\n\t\t\t\t\t\"idRef\": \"77396943-a56c-41f0-96e7-e778b758b0e2\"\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"id\": \"1766c4fe-051d-43a7-a273-11bc3d8cc628\",\r\n\t\t\"name\": \"guest-LDP_Pod\",\r\n\t\t\"type\": \"VirtualNetwork\",\r\n\t\t\"isDefault\": false,\r\n\t\t\"l3Instance\": 4100,\r\n\t\t\"namespace\": \"77396943-a56c-41f0-96e7-e778b758b0e2\",\r\n\t\t\"instanceId\": 119178,\r\n\t\t\"authEntityId\": 119178,\r\n\t\t\"displayName\": \"0\",\r\n\t\t\"authEntityClass\": 1897203097,\r\n\t\t\"deployPending\": \"NONE\",\r\n\t\t\"instanceVersion\": 0,\r\n\t\t\"deployed\": true,\r\n\t\t\"isStale\": false,\r\n\t\t\"provisioningState\": \"DEPLOYED\",\r\n\t\t\"cfsChangeInfo\": [],\r\n\t\t\"virtualNetworkContextId\": \"137b9e31-d3e0-4f26-b727-578a4d3ab705\",\r\n\t\t\"resourceVersion\": 2\r\n\t}\r\n]"
+				},
+				"url": {
+					"raw": "{{base_url}}/v2/data/customer-facing-service/VirtualNetwork",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"data",
+						"customer-facing-service",
+						"VirtualNetwork"
+					]
+				},
+				"description": "MAKE SURE TO UPDATE THE RESOURCE VERSION WITH EACH CALL!!!!!"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE  VN Association ",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url}}/v2/data/customer-facing-service/VirtualNetwork/30781528-624a-4ffc-a511-9c5581959e31",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"data",
+						"customer-facing-service",
+						"VirtualNetwork",
+						"30781528-624a-4ffc-a511-9c5581959e31"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Fabrics",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/v2/data/customer-facing-service/ConnectivityDomain",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v2",
+						"data",
+						"customer-facing-service",
+						"ConnectivityDomain"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PNP devices",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"try {",
+							"    var data = JSON.parse(responseBody);",
+							"    data.response.forEach(function(item){",
+							"        tests[item.serialNumber + \"..state..\" + item.state + \"..id..\" + item.id] = ((item.serialNumber !== null) ? true : false);",
+							"    })",
+							"}",
+							"catch(e) {",
+							"    console.log('Cannot parse response,probably not a JSON');",
+							"}",
+							"tests[\"response code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{base_url}}/v1/pnp-device",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"pnp-device"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,22 @@
+[
+	{
+		"type":"ConnectivityDomain",
+		"name":"{{ data['name'] }}",
+		"description":"",
+		"domainType":"{{ data['type'] }}",
+		"virtualNetwork":[],
+		"isDefault":false,
+		"enableMonitoring":true,
+		"siteSpecificDomain":
+			[
+				{
+					"type":"ConnectivityDomain",
+					"name":"{{ data['name'] }}",
+					"description":"",
+					"domainType":"FABRIC_SITE",
+					"siteId": "{{ data['siteID'] }}",
+					"virtualNetwork": {{ data['virtualNetwork'] }}
+				}
+			]
+	}
+]

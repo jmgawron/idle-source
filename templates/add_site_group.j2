@@ -1,0 +1,28 @@
+{
+  "groupTypeList":["{{ data['*groupTypeList'] }}"],
+  "parentId":"{{ data['parentId'] }}",
+  "childIds":[""],
+  "name":"{{ data['*name'] }}",
+  "id":"",
+  "additionalInfo":[
+      {
+        "nameSpace":"Location",
+        "attributes":
+          {
+            {% if data['Location:latitude'] != None %}
+            "latitude":"{{ data['Location:latitude'] }}",
+            {% endif %}
+            {% if data['Location:longitude'] != None %}
+            "longitude":"{{ data['Location:longitude'] }}",
+            {% endif %}
+            {% if data['Location:address'] != None %}
+            "address":"{{ data['Location:address'] }}",
+            {% endif %}
+            {% if data['Location:country'] != None %}
+            "country":"{{ data['Location:country'] }}",
+            {% endif %}
+            "type":"{{ data['*Location:type'] }}"
+          }
+    }
+    ]
+}

@@ -1,0 +1,17 @@
+[{
+    {% if data['authPassword'] != None  %}
+	"authPassword":"{{ data['authPassword'] }}",
+    {% endif %}
+    {% if data['authType'] != None  %}
+	"authType":"{{ data['authType'] }}",
+    {% endif %}
+	"snmpMode":"{{ data['snmpMode'] }}",
+    {% if data['privacyPassword'] != None  %}
+	"privacyPassword":"{{ data['privacyPassword'] }}",
+    {% endif %}
+    {% if data['privacyType'] != None  %}
+	"privacyType":"{{ data['privacyType'] }}",
+    {% endif %}
+	"username":"{{ data['username'] }}",
+	"description":"{{ data['profileName'] }}"
+}]

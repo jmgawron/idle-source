@@ -1,0 +1,28 @@
+[{
+	"instanceType":"pan",
+                    {% if data['instanceUuid0'] != None %}
+	"instanceUuid":"{{ data['instanceUuid0'] }}",
+                    {%  endif %}
+	"namespace":"global",
+	"type":"pan.setting",
+	"key":"{{ data['endpointKey'] }}",
+	"version":1,
+	"value":["{{ data['ipAddress'] }}"],
+	"groupUuid":"-1",
+	"inheritedGroupUuid":"",
+	"inheritedGroupName":""
+},
+{
+	"instanceType":"aaa",
+                    {% if data['instanceUuid1'] != None %}
+	"instanceUuid":"{{ data['instanceUuid1'] }}",
+                    {%  endif %}
+	"namespace":"global",
+	"type":"aaa.setting",
+	"key":"{{ data['serverKey'] }}",
+	"version":1,
+	"value":[{{ data['value'] }}],
+	"groupUuid":"-1",
+	"inheritedGroupUuid":"",
+	"inheritedGroupName":""
+}]

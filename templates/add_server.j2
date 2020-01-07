@@ -1,0 +1,22 @@
+[{
+    {% if data['type'] == 'dns.server' %}
+	"instanceType":"dns",
+    {% else %}
+	"instanceType":"ip",
+    {% endif %}
+                    {% if data['instanceUuid'] != None %}
+	"instanceUuid":"{{ data['instanceUuid'] }}",
+                    {%  endif %}
+	"namespace":"global",
+    {% if data['type'] == 'dns.server' %}
+    "type":"dns.setting",
+    {% else %}
+    "type":"ip.address",
+    {% endif %}
+	"key":"{{ data['type'] }}",
+	"version":1,
+	"value":[{{ data['value'] }}],
+	"groupUuid":"-1",
+	"inheritedGroupUuid":"",
+	"inheritedGroupName":""
+}]

@@ -1,0 +1,8 @@
+[{
+	"description":"{{ data['profileName'] }}",
+	"username":"{{ data['username'] }}",
+	"password":"{{ data['password'] }}",
+    {% if data['enable'] != None %}
+	"enablePassword":"{{ data['enable'] }}"
+    {% endif %}
+}]

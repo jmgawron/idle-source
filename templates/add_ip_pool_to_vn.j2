@@ -1,0 +1,54 @@
+[{
+	"fabricOverride":{{ data['fabricOverride'] }},
+	"segment":[
+        {% for d in data['segment'] %}
+        {% if d['id'] %}
+        {
+            "id":"{{ d['id'] }}",
+            "type":"{{ d['type'] }}",
+            "name":"{{ d['name'] }}",
+            "trafficType":"{{ d['trafficType'] }}",
+            "ipPoolId":"{{ d['ipPoolId'] }}",
+            "isFloodAndLearn":{{ d['isFloodAndLearn'] }},
+            "isApProvisioning":{{ d['isApProvisioning'] }},
+            "isDefaultEnterprise":{{ d['isDefaultEnterprise'] }},
+            "wlan":[{% for e in d['wlan'] %}{"idRef":"{{ e['idRef'] }}"}{% if count != e.length %},{% endif %}{% endfor %}],
+            "connectivityDomain":{"idRef":"{{ d['connectivityDomain'] }}"},
+            "vlanId":"{{ d['vlanId'] }}",
+            "instanceId":{{ d['instanceId'] }},
+            "l2Instance":{{ d['l2Instance'] }}
+        },
+        {% else %}
+        {
+            "type":"{{ d['type'] }}",
+            "name":"{{ d['name'] }}",
+            "trafficType":"{{ d['trafficType'] }}",
+            "ipPoolId":"{{ d['ipPoolId'] }}",
+            "isFloodAndLearn":{{ d['isFloodAndLearn'] }},
+            "isApProvisioning":{{ d['isApProvisioning'] }},
+            "isDefaultEnterprise":{{ d['isDefaultEnterprise'] }},
+            "connectivityDomain":{"idRef": "{{ d['connectivityDomain'] }}"}
+        }
+        {% endif %}
+        {% endfor %}
+	],
+	"id":"{{ data['id'] }}",
+	"name":"{{ data['name'] }}",
+	"type":"{{ data['type'] }}",
+	"isDefault":{{ data['isDefault'] }},
+	"isInfra":{{ data['isInfra'] }},
+	"l3Instance":{{ data['l3Instance'] }},
+	"namespace":"{{ data['namespace'] }}",
+	"instanceId":{{ data['instanceId'] }},
+	"authEntityId":{{ data['authEntityId'] }},
+	"displayName":"{{ data['displayName'] }}",
+	"authEntityClass":{{ data['authEntityClass'] }},
+	"deployPending":"{{ data['deployPending'] }}",
+	"instanceVersion":{{ data['instanceVersion'] }},
+	"deployed":{{ data['deployed'] }},
+	"isStale":{{ data['isStale'] }},
+	"provisioningState":"{{ data['provisioningState'] }}",
+	"cfsChangeInfo":{{ data['cfsChangeInfo'] }},
+	"virtualNetworkContextId":"{{ data['virtualNetworkContextId'] }}",
+	"resourceVersion":{{ data['resourceVersion'] }}
+}]

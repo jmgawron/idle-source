@@ -1,0 +1,27 @@
+[{
+    "id": "{{ data['id'] }}",
+    "instanceId": "{{ data['instanceId'] }}",
+    "displayName": "{{ data['displayName'] }}",
+    "instanceVersion": "{{ data['instanceVersion'] }}",
+    "createTime": "{{ data['createTime'] }}",
+    "deployed": "{{ data['deployed'] }}",
+    "isSeeded": "{{ data['isSeeded'] }}",
+    "isStale": "{{ data['isStale'] }}",
+    "lastUpdateTime": "{{ data['lastUpdateTime'] }}",
+    "name": "{{ data['name'] }}",
+    "namespace": "{{ data['namespace'] }}",
+    "provisioningState": "{{ data['provisioningState'] }}",
+    "resourceVersion": "{{ data['resourceVersion'] }}",
+    "targetIdList": [],
+    "type": "{{ data['type'] }}",
+    "cfsChangeInfo": [],
+    "customProvisions": [],
+    "virtualNetworkContextType": "{{ data['virtualNetworkContextType'] }}",
+    "scalableGroup": [ {% for d in data['scalableGroup'] %}
+                       {{ d }}
+                       {%  endfor %} ]
+}]
+
+ ##   "authEntityId": "{{ data['authEntityId'] }}",
+ ##   "authEntityClass": "{{ data['authEntityClass'] }}",
+ ##   "deployPending": "{{ data['deployPending'] }}",
